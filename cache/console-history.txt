@@ -1,0 +1,8 @@
+await registry.getLPTokenPriceUsd('0x39965c9dab5448482cf7e002f583c812ceb53046');
+await registry.createNebulaOracle(0, '0x39965c9dab5448482cf7e002f583c812ceb53046', ['0x13e3Ee699D1909E989722E753853AE30b17e08c5', '0x0D276FC14719f9292D5C1eA2198673d1f4269246', '0x16a9FA2FDa030272Ce99B29CF780dFA30361E0f3']);
+await registry.createNebulaOracle(0, '0x39965c9dab5448482cf7e002f583c812ceb53046' ['0x13e3Ee699D1909E989722E753853AE30b17e08c5', '0x0D276FC14719f9292D5C1eA2198673d1f4269246', '0x16a9FA2FDa030272Ce99B29CF780dFA30361E0f3']);
+await registry.createNebula(oracle.address);
+let oracle = await Oracle.deploy('0x7f5c764cbc14f9669b88837ca1490cca17c31607', '0x16a9FA2FDa030272Ce99B29CF780dFA30361E0f3', registry.address);
+let Oracle = await ethers.getContractFactory("BalancerWeightedNebula");
+let registry = await Registry.deploy();
+let Registry = await ethers.getContractFactory("CygnusNebulaRegistry");
