@@ -41,7 +41,6 @@ import {ICygnusNebula} from "./interfaces/ICygnusNebula.sol";
 
 // Libraries
 import {PRBMath, PRBMathUD60x18} from "./libraries/PRBMathUD60x18.sol";
-import {PRBMathSD59x18} from "./libraries/PRBMathSD59x18.sol";
 import {SafeCastLib} from "./libraries/SafeCastLib.sol";
 
 // Interfaces
@@ -72,11 +71,6 @@ contract BalancerComposableNebula is ICygnusNebula {
      *  @custom:library PRBMathUD60x18 Library for advanced fixed-point math that works with uint256 numbers
      */
     using PRBMathUD60x18 for uint256;
-
-    /**
-     *  @custom:library PRBMathSD59x18 Library for advanced fixed-point math that works with int256 numbers
-     */
-    using PRBMathSD59x18 for int256;
 
     /*  ═══════════════════════════════════════════════════════════════════════════════════════════════════════ 
             2. STORAGE
