@@ -99,7 +99,7 @@ contract BalancerComposableNebula is ICygnusNebula {
     /**
      *  @inheritdoc ICygnusNebula
      */
-    string public override name = "Cygnus: Balancer Weighted Nebula";
+    string public override name = "Cygnus: Balancer Composable Nebula";
 
     /**
      *  @inheritdoc ICygnusNebula
