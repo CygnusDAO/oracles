@@ -1,3 +1,5 @@
+WIP: We have more oracles which are finalized but not included here yet, all oracles will eventually be here.
+
 # Cygnus Oracle Registry
 
 This repo contains all the latest oracles that we are using in Cygnus.
