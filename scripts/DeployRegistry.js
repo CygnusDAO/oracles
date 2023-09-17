@@ -2,31 +2,30 @@
 const hre = require("hardhat");
 const ethers = hre.ethers;
 
-// Example of getting the price of the Matic-Maticx Composable pool:
-//
-// https://polygonscan.com/address/0xcd78a20c597e367a4e478a2411ceb790604d7c8f#readContract
-// https://app.balancer.fi/#/polygon/pool/0xcd78a20c597e367a4e478a2411ceb790604d7c8f000000000000000000000c22
 const deployRegistry = async () => {
+    const usdc = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+    const usdcFeed = "0x8fFfFfd4AfB6115b954Bd326cbe7B4BA576818f6";
+
+    const lpToken = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11";
+    const tokenFeeds = ["0xAed0c38402a5d19df6E4c03F4E2DceD6e29c1ee9", "0x5f4eC3Df9cbd43714FE2740f5E3616155c5b8419"];
+
     // Registry
     const Registry = await ethers.getContractFactory("CygnusNebulaRegistry");
     const registry = await Registry.deploy();
 
     // Balancer Composable
-    const Nebula = await ethers.getContractFactory("BalancerComposableNebula");
-    const nebula = await Nebula.deploy("0x2791bca1f2de4661ed88a30c99a7a9449aa84174", "0xfE4A8cc5b5B2366C1B58Bea3858e81843581b2F7", registry.address);
+    const Nebula = await ethers.getContractFactory("UniswapV2Nebula");
+    const nebula = await Nebula.deploy(usdc, usdcFeed, registry.address);
 
     // Create nebula
     await registry.createNebula(nebula.address);
 
     // Init oracle
-    await registry.createNebulaOracle(0, "0xcd78a20c597e367a4e478a2411ceb790604d7c8f", [
-        "0xAB594600376Ec9fD91F8e885dADF0CE036862dE0",
-        "0x5d37E4b374E6907de8Fc7fb33EE3b0af403C7403",
-    ]);
+    await registry.createNebulaOracle(0, lpToken, tokenFeeds);
 
-    console.log(await registry.getLPTokenInfo("0xcd78a20c597e367a4e478a2411ceb790604d7c8f"));
+    console.log(await registry.getLPTokenInfo(lpToken));
 
-    const lpTokenPrice = await registry.getLPTokenPriceUsd('0xcd78a20c597e367a4e478a2411ceb790604d7c8f');
+    const lpTokenPrice = await registry.getLPTokenPriceUsd(lpToken);
     console.log("LP Token Price: %s", lpTokenPrice);
 };
 

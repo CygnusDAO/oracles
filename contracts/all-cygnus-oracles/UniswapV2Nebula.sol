@@ -32,7 +32,7 @@
                        ░░░░░░    ░░░░░░                                               🛸  ⠀
            .                            .       .             🛰️         .                          
     
-        CYGNUS LP ORACLE (Balancer Weighted Pools) - https://cygnusdao.finance                                                          .                     .
+        CYGNUS LP ORACLE (UniswapV2 style pools) - https://cygnusdao.finance                                                          .                     .
     ═══════════════════════════════════════════════════════════════════════════════════════════════════════════ */
 pragma solidity >=0.8.17;
 
@@ -41,16 +41,14 @@ import {ICygnusNebula} from "./interfaces/ICygnusNebula.sol";
 
 // Libraries
 import {PRBMath, PRBMathUD60x18} from "./libraries/PRBMathUD60x18.sol";
-import {PRBMathSD59x18} from "./libraries/PRBMathSD59x18.sol";
 import {SafeCastLib} from "./libraries/SafeCastLib.sol";
 
 // Interfaces
 import {IERC20} from "./interfaces/IERC20.sol";
 import {AggregatorV3Interface} from "./interfaces/AggregatorV3Interface.sol";
 
-// Balancer
-import {IVault} from "./interfaces/Balancer/IVault.sol";
-import {IWeightedPool} from "./interfaces/Balancer/IWeightedPool.sol";
+// Uniswap
+import {IUniswapV2Pair} from "./interfaces/UniswapV2/IUniswapV2Pair.sol";
 
 /**
  *  @title  CygnusNebula
@@ -60,10 +58,10 @@ import {IWeightedPool} from "./interfaces/Balancer/IWeightedPool.sol";
  *          and `denominationToken` with token. We used AGGREGATOR_DECIMALS as a constant for chainlink prices
  *          which are denominated in USD as all aggregators return prices in 8 decimals and saves us gas when
  *          getting the LP token price.
- *  @notice Implementation of revest finance fair BPT pricing using Chainlink price feeds
- *          https://revestfinance.medium.com/dev-blog-on-the-derivation-of-a-safe-price-formula-for-balancer-pool-tokens-33e8993455d0
+ *  @notice Implementation of Alpha Homora's fair lp token pricing using Chainlink price feeds
+ *          https://blog.alphaventuredao.io/fair-lp-token-pricing/
  */
-contract BalancerWeightedNebula is ICygnusNebula {
+contract UniswapV2Nebula is ICygnusNebula {
     /*  ═══════════════════════════════════════════════════════════════════════════════════════════════════════ 
             1. LIBRARIES
         ═══════════════════════════════════════════════════════════════════════════════════════════════════════  */
@@ -72,11 +70,6 @@ contract BalancerWeightedNebula is ICygnusNebula {
      *  @custom:library PRBMathUD60x18 Library for advanced fixed-point math that works with uint256 numbers
      */
     using PRBMathUD60x18 for uint256;
-
-    /**
-     *  @custom:library PRBMathSD59x18 Library for advanced fixed-point math that works with int256 numbers
-     */
-    using PRBMathSD59x18 for int256;
 
     /*  ═══════════════════════════════════════════════════════════════════════════════════════════════════════ 
             2. STORAGE
@@ -99,7 +92,7 @@ contract BalancerWeightedNebula is ICygnusNebula {
     /**
      *  @inheritdoc ICygnusNebula
      */
-    string public override name = "Cygnus: Balancer Weighted Nebula";
+    string public override name = "Cygnus: UniswapV2 Nebula";
 
     /**
      *  @inheritdoc ICygnusNebula
@@ -151,12 +144,7 @@ contract BalancerWeightedNebula is ICygnusNebula {
     /**
      *  @inheritdoc ICygnusNebula
      */
-    bytes4 public constant override S = IVault.manageUserBalance.selector;
-
-    /**
-     *  @notice Balancer Vault
-     */
-    address public constant VAULT = 0xBA12222222228d8Ba445958a75a0704d566BF2C8;
+    bytes4 public constant override S = IUniswapV2Pair.mint.selector;
 
     /*  ═══════════════════════════════════════════════════════════════════════════════════════════════════════ 
             3. CONSTRUCTOR
@@ -189,7 +177,7 @@ contract BalancerWeightedNebula is ICygnusNebula {
         ═══════════════════════════════════════════════════════════════════════════════════════════════════════  */
 
     /**
-     *  @dev Ensure we are not in the Liquidity Token`s context when `lpTokenPriceUsd` function is called, by
+     *  @dev Ensure we are not in the Vault`s context when `lpTokenPriceUsd` function is called, by
      *       attempting a no-op internal balance operation. If we are already in an underlying transaction (ie a
      *       swap, join, or exit, etc), the underlying's reentrancy protection will cause the `lpTokenPriceUsd`
      *       function to revert, reverting any borrow or liquidation.
@@ -198,8 +186,7 @@ contract BalancerWeightedNebula is ICygnusNebula {
     modifier context(address contextContract) {
         // Perform the following payable call as a staticcall:
         //
-        // IVault.UserBalanceOp[] memory noop = new IVault.UserBalanceOp[](0);
-        // _vault.manageUserBalance(noop);
+        // IUniswapV2Pair(lpTokenPair).mint(0)
         //
         // This staticcall always reverts, but we need to make sure it doesn't fail due to a re-entrancy attack.
         (, bytes memory revertData) = contextContract.staticcall{gas: 10_000}(abi.encodeWithSelector(S, 0));
@@ -319,52 +306,41 @@ contract BalancerWeightedNebula is ICygnusNebula {
     /**
      *  @inheritdoc ICygnusNebula
      */
-    function lpTokenPriceUsd(address lpTokenPair) external view override context(VAULT) returns (uint256 lpTokenPrice) {
-        // Load to storage for gas savings
+    function lpTokenPriceUsd(address lpTokenPair) external view override context(lpTokenPair) returns (uint256 lpTokenPrice) {
+        // 1. Load oracle to storage for gas savings since we are not doing storage writes
         NebulaOracle storage oracle = nebulaOracles[lpTokenPair];
 
         /// @custom:error PairNotInitialized Avoid getting price unless lpTokenPair's price is being tracked
         if (!oracle.initialized) revert CygnusNebulaOracle__PairNotInitialized(lpTokenPair);
 
-        // 1. weight = balance * price / invariant
-        uint256[] memory weights = IWeightedPool(lpTokenPair).getNormalizedWeights();
+        // 1. Get price of each of the LP token assets adjusted to 18 decimals
+        // Price of token0
+        uint256 price0 = getPriceInternal(oracle.priceFeeds[0]);
 
-        // 2. Loop through each prices and update `totalPi`
-        int256 totalPi = PRBMathSD59x18.fromInt(1e18);
+        // Price of token1
+        uint256 price1 = getPriceInternal(oracle.priceFeeds[1]);
 
-        // Use weights.length to avoid reading from storage for gas savings
-        for (uint256 i = 0; i < weights.length; i++) {
-            // Get the price from chainlink from cached price feeds
-            uint256 assetPrice = getPriceInternal(oracle.priceFeeds[i]);
+        // 2. Get the reserves of tokenA and tokenB to compute k
+        (uint112 reserves0, uint112 reserves1, ) = IUniswapV2Pair(lpTokenPair).getReserves();
 
-            // Value = Token Price / Token Weight
-            int256 value = int256(assetPrice).div(int256(weights[i]));
+        // Adjusted with token0 decimals
+        uint256 value0 = (price0 * reserves0) / (10 ** oracle.poolTokensDecimals[0]);
 
-            // Individual Pi = Value ** Token Weight
-            int256 indivPi = value.pow(int256(weights[i]));
+        // Adjust with token1 decimals
+        uint256 value1 = (price1 * reserves1) / (10 ** oracle.poolTokensDecimals[1]);
 
-            // Adjust total Pi
-            totalPi = totalPi.mul(indivPi);
-        }
+        // 3. Get total Supply (always 18 decimals)
+        uint256 supply = IUniswapV2Pair(lpTokenPair).totalSupply();
 
-        // 3. Get invariant from the pool
-        int256 invariant = int256(IWeightedPool(lpTokenPair).getLastInvariant());
+        // 4. Compute the price of the LP Token denominated in USD
+        // LP Price = 2 * Math.sqrt((reserves0 * price0) * (reserve1 * price1)) / totalSupply
+        uint256 lpPriceUsd = (2e18 * value0.gm(value1)) / supply;
 
-        // Pool TVL in USD
-        int256 numerator = totalPi.mul(invariant);
-
-        // 4. Total Supply of BPT tokens for this pool
-        int256 totalSupply = int256(IWeightedPool(lpTokenPair).totalSupply());
-
-        // 5. BPT Price (USD) = TVL / totalSupply
-        uint256 lpPrice = uint256((numerator.toInt().div(totalSupply)));
-
-        // 6. Return price of BPT in denom token
-        // Wad denom token
+        // 5. Get the price of the denomination token
         uint256 denomPrice = getPriceInternal(denominationAggregator);
 
-        // BPT Price in denom token (USDC) and adjust to denom token `decimals`
-        lpTokenPrice = lpPrice.div(denomPrice * 10 ** (18 - decimals));
+        // 6. Return the price of the LP Token expressed in the denomination token
+        lpTokenPrice = lpPriceUsd.div(denomPrice * 10 ** (18 - decimals));
     }
 
     /**
@@ -403,11 +379,8 @@ contract BalancerWeightedNebula is ICygnusNebula {
         reserves = new uint256[](nebulaOracle.poolTokens.length);
         reservesUsd = new uint256[](nebulaOracle.poolTokens.length);
 
-        // Pool ID
-        bytes32 poolId = IWeightedPool(lpTokenPair).getPoolId();
-
-        // Reserves
-        (, reserves, ) = IVault(VAULT).getPoolTokens(poolId);
+        // Get reserves (poolTokens.length is always 2 for univ2 pairs)
+        (reserves[0], reserves[1], ) = IUniswapV2Pair(lpTokenPair).getReserves();
 
         // Price of denom token
         uint256 denomPrice = getPriceInternal(denominationAggregator);
@@ -476,11 +449,11 @@ contract BalancerWeightedNebula is ICygnusNebula {
         // Create a memory array for the decimals of each price feed
         uint256[] memory priceDecimals = new uint256[](aggregators.length);
 
-        // Pool ID
-        bytes32 poolId = IWeightedPool(lpTokenPair).getPoolId();
+        // Get the first token of the LP
+        poolTokens[0] = IERC20(IUniswapV2Pair(lpTokenPair).token0());
 
-        // Get pool tokens
-        (poolTokens, , ) = IVault(VAULT).getPoolTokens(poolId);
+        // Get the second token of the LP
+        poolTokens[1] = IERC20(IUniswapV2Pair(lpTokenPair).token1());
 
         // Loop through each one
         for (uint256 i = 0; i < aggregators.length; i++) {

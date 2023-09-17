@@ -66,44 +66,31 @@ module.exports = {
         },
         // Mainnet
         mainnet: {
-            url: process.env.RPC_URL_MAINNET,
+            url: "https://rpc.ankr.com/eth",
             chainId: 1,
         },
         // Arbitrum
         arbitrum: {
-            url: process.env.RPC_URL_ARBITRUM,
+            url: "https://rpc.ankr.com/arbitrum",
             chainId: 42161,
         },
         // Polygon
         polygon: {
-            url: process.env.RPC_URL_POLYGON,
+            url: "https://rpc.ankr.com/polygon",
             chainId: 137,
-        },
-        // Polygon testnet
-        polygonMumbai: {
-            url: process.env.RPC_URL_POLYGON_TESTNET,
-            chainId: 80001,
         },
         // Optimism
         optimism: {
-            url: process.env.RPC_URL_OPTIMISM,
+            url: "https://rpc.ankr.com/optimism",
             chainId: 10,
-        },
-        optimismGoerli: {
-            url: process.env.RPC_URL_OPTIMISM_GOERLI,
-            chainId: 420,
         },
         bsc: {
             url: "https://rpc.ankr.com/bsc",
             chainId: 56,
         },
         zkevm: {
-            url: process.env.RPC_URL_ZKEVM,
+            url: "https://rpc.ankr.com/polygon_zkevm",
             chainId: 1101,
-        },
-        zkevmTestnet: {
-            url: "https://rpc.ankr.com/polygon_zkevm_testnet",
-            chainId: 1442,
         },
     },
     mocha: { timeout: 100000000 },

@@ -59,8 +59,7 @@ import {IComposableStablePool} from "./interfaces/Balancer/IComposableStablePool
  *          and `denominationToken` with token. We used AGGREGATOR_DECIMALS as a constant for chainlink prices
  *          which are denominated in USD as all aggregators return prices in 8 decimals and saves us gas when
  *          getting the LP token price.
- *  @notice Implementation of fair lp token pricing using Chainlink price feeds
- *          https://github.com/makerdao/univ3-lp-oracle/blob/master/src/GUniLPOracle.sol
+ *  @notice Implementation of fair BPT pricing for composable stable pools
  */
 contract BalancerComposableNebula is ICygnusNebula {
     /*  ═══════════════════════════════════════════════════════════════════════════════════════════════════════ 
