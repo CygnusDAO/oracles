@@ -241,7 +241,12 @@ interface ICygnusNebulaRegistry {
      *
      *  @custom:security only-admin
      */
-    function createNebulaOracle(uint256 nebulaId, address lpTokenPair, AggregatorV3Interface[] calldata aggregators) external;
+    function createNebulaOracle(
+        uint256 nebulaId,
+        address lpTokenPair,
+        AggregatorV3Interface[] calldata aggregators,
+        bool isOverride
+    ) external;
 
     /**
      *  @notice Admin 👽

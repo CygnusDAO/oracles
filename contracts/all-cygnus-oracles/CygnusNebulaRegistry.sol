@@ -261,7 +261,8 @@ contract CygnusNebulaRegistry is ICygnusNebulaRegistry, ReentrancyGuard {
     function createNebulaOracle(
         uint256 nebulaId,
         address lpTokenPair,
-        AggregatorV3Interface[] calldata aggregators
+        AggregatorV3Interface[] calldata aggregators,
+        bool isOverride
     ) external override cygnusAdmin {
         // Get nebula address
         CygnusNebula storage nebula = allNebulas[nebulaId];
@@ -272,12 +273,12 @@ contract CygnusNebulaRegistry is ICygnusNebulaRegistry, ReentrancyGuard {
         // If this is the first time we initialize this oracle;
         // Account for cases where we modify the oracle during grace period
         if (lpNebulas[lpTokenPair] == address(0)) {
-            // Increase total initialized oracles
-            nebula.totalOracles++;
-
             // Add lp token to the array
             allLPTokenPairs.push(lpTokenPair);
         }
+
+        // Increase total initialized oracles for this nebula, if we are overriding we don't increase count
+        if (!isOverride) nebula.totalOracles++;
 
         // Map LP Token => Nebula address
         // This is intentinally left outside of the above if statement. If we need to re-deploy an oracle
