@@ -491,9 +491,6 @@ contract BalancerWeightedNebula is ICygnusNebula {
             priceDecimals[i] = aggregators[i].decimals();
         }
 
-        // Assign an ID to the new oracle
-        nebulaOracle.oracleId = nebulaSize();
-
         // Set the user-friendly name of the new oracle to the name of the LP Token pair
         nebulaOracle.name = IERC20(lpTokenPair).name();
 
