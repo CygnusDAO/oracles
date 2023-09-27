@@ -218,6 +218,11 @@
           "internalType": "contract AggregatorV3Interface[]",
           "name": "aggregators",
           "type": "address[]"
+        },
+        {
+          "internalType": "bool",
+          "name": "isOverride",
+          "type": "bool"
         }
       ],
       "name": "createNebulaOracle",

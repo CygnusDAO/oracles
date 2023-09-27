@@ -360,6 +360,17 @@ library SafeCastLib {
         return y;
     }
 
+    function toInt256(uint256 value) internal pure returns (int256) {
+        // Note: Unsafe cast below is okay because `type(int256).max` is guaranteed to be positive
+        if (value > uint256(type(int256).max)) _revertOverflow();
+        return int256(value);
+    }
+
+    function toUint256(int256 value) internal pure returns (uint256) {
+        if (value < 0) _revertOverflow();
+        return uint256(value);
+    }
+
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                      PRIVATE HELPERS                       */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/

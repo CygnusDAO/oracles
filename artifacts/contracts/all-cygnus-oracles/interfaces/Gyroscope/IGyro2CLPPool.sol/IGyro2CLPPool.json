@@ -1,0 +1,63 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IGyro2CLPPool",
+  "sourceName": "contracts/all-cygnus-oracles/interfaces/Gyroscope/IGyro2CLPPool.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getLastInvariant",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPoolId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getSqrtParameters",
+      "outputs": [
+        {
+          "internalType": "uint256[2]",
+          "name": "",
+          "type": "uint256[2]"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

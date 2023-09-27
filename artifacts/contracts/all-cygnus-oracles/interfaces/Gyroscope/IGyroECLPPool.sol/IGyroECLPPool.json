@@ -1,0 +1,156 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IGyroECLPPool",
+  "sourceName": "contracts/all-cygnus-oracles/interfaces/Gyroscope/IGyroECLPPool.sol",
+  "abi": [
+    {
+      "inputs": [],
+      "name": "getECLPParams",
+      "outputs": [
+        {
+          "components": [
+            {
+              "internalType": "int256",
+              "name": "alpha",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "beta",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "c",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "s",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "lambda",
+              "type": "int256"
+            }
+          ],
+          "internalType": "struct IGyroECLPPool.Params",
+          "name": "params",
+          "type": "tuple"
+        },
+        {
+          "components": [
+            {
+              "components": [
+                {
+                  "internalType": "int256",
+                  "name": "x",
+                  "type": "int256"
+                },
+                {
+                  "internalType": "int256",
+                  "name": "y",
+                  "type": "int256"
+                }
+              ],
+              "internalType": "struct IGyroECLPPool.Vector2",
+              "name": "tauAlpha",
+              "type": "tuple"
+            },
+            {
+              "components": [
+                {
+                  "internalType": "int256",
+                  "name": "x",
+                  "type": "int256"
+                },
+                {
+                  "internalType": "int256",
+                  "name": "y",
+                  "type": "int256"
+                }
+              ],
+              "internalType": "struct IGyroECLPPool.Vector2",
+              "name": "tauBeta",
+              "type": "tuple"
+            },
+            {
+              "internalType": "int256",
+              "name": "u",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "v",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "w",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "z",
+              "type": "int256"
+            },
+            {
+              "internalType": "int256",
+              "name": "dSq",
+              "type": "int256"
+            }
+          ],
+          "internalType": "struct IGyroECLPPool.DerivedParams",
+          "name": "d",
+          "type": "tuple"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getLastInvariant",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getPoolId",
+      "outputs": [
+        {
+          "internalType": "bytes32",
+          "name": "",
+          "type": "bytes32"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "totalSupply",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}

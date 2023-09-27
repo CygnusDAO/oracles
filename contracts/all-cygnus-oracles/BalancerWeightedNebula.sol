@@ -42,7 +42,6 @@ import {ICygnusNebula} from "./interfaces/ICygnusNebula.sol";
 // Libraries
 import {PRBMath, PRBMathUD60x18} from "./libraries/PRBMathUD60x18.sol";
 import {PRBMathSD59x18} from "./libraries/PRBMathSD59x18.sol";
-import {SafeCastLib} from "./libraries/SafeCastLib.sol";
 
 // Interfaces
 import {IERC20} from "./interfaces/IERC20.sol";

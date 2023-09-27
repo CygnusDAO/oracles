@@ -2,8 +2,8 @@
   "_format": "hh-sol-cache-2",
   "files": {
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/BalancerComposableNebula.sol": {
-      "lastModificationDate": 1694943279290,
-      "contentHash": "3386811f57340b103acd4b11f821b9ac",
+      "lastModificationDate": 1695842066903,
+      "contentHash": "8ddf20b30f88a809c87972c9101b5b7d",
       "sourceName": "contracts/all-cygnus-oracles/BalancerComposableNebula.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -171,8 +171,8 @@
       ]
     },
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/libraries/SafeCastLib.sol": {
-      "lastModificationDate": 1694536543772,
-      "contentHash": "5b7d97e2205aba204581b60b36797ac2",
+      "lastModificationDate": 1695846478052,
+      "contentHash": "5e2cb9a705cf6e7e1a3c8ff9cfc2c13c",
       "sourceName": "contracts/all-cygnus-oracles/libraries/SafeCastLib.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -485,8 +485,8 @@
       ]
     },
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/interfaces/ICygnusNebulaRegistry.sol": {
-      "lastModificationDate": 1694536543771,
-      "contentHash": "8c3f9a6afd93050ddd563ba786258afc",
+      "lastModificationDate": 1695825759927,
+      "contentHash": "2ad00efce9d86402dc82877e77881ea6",
       "sourceName": "contracts/all-cygnus-oracles/interfaces/ICygnusNebulaRegistry.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -541,8 +541,8 @@
       ]
     },
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/UniswapV2Nebula.sol": {
-      "lastModificationDate": 1694945145416,
-      "contentHash": "7f642f5529d44edc97eb136c087e6cb8",
+      "lastModificationDate": 1695833295954,
+      "contentHash": "14c733dd6ed8caf65663fd43f27ce0de",
       "sourceName": "contracts/all-cygnus-oracles/UniswapV2Nebula.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -652,7 +652,7 @@
       ]
     },
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/GammaNebula.sol": {
-      "lastModificationDate": 1694536543771,
+      "lastModificationDate": 1695825759927,
       "contentHash": "a9b0f1ac72b30549790b17a069f8f4f9",
       "sourceName": "contracts/all-cygnus-oracles/GammaNebula.sol",
       "solcConfig": {
@@ -1033,8 +1033,8 @@
       ]
     },
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/BalancerWeightedNebula.sol": {
-      "lastModificationDate": 1694943249999,
-      "contentHash": "72be2a4ad2a49fa289a46ac83608ca85",
+      "lastModificationDate": 1695845916053,
+      "contentHash": "961d27ef2d7a222afabf5aaf72d1f8df",
       "sourceName": "contracts/all-cygnus-oracles/BalancerWeightedNebula.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -1080,7 +1080,6 @@
         "./interfaces/ICygnusNebula.sol",
         "./libraries/PRBMathUD60x18.sol",
         "./libraries/PRBMathSD59x18.sol",
-        "./libraries/SafeCastLib.sol",
         "./interfaces/IERC20.sol",
         "./interfaces/AggregatorV3Interface.sol",
         "./interfaces/Balancer/IVault.sol",
@@ -1146,8 +1145,8 @@
       ]
     },
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/CygnusNebulaRegistry.sol": {
-      "lastModificationDate": 1694536543771,
-      "contentHash": "f7a94c13416c9a37774c203305c2c9a5",
+      "lastModificationDate": 1695825759927,
+      "contentHash": "8146f3b9dbdf3405148cae7440a43463",
       "sourceName": "contracts/all-cygnus-oracles/CygnusNebulaRegistry.sol",
       "solcConfig": {
         "version": "0.8.17",
@@ -1305,6 +1304,396 @@
       ],
       "artifacts": [
         "IHangar18"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/Gyro2CLPNebula.sol": {
+      "lastModificationDate": 1695845194823,
+      "contentHash": "4aaab0571adbd76842c7e6215259fcf6",
+      "sourceName": "contracts/all-cygnus-oracles/Gyro2CLPNebula.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/ICygnusNebula.sol",
+        "./libraries/PRBMathUD60x18.sol",
+        "./libraries/PRBMathSD59x18.sol",
+        "./libraries/SafeCastLib.sol",
+        "./interfaces/IERC20.sol",
+        "./interfaces/AggregatorV3Interface.sol",
+        "./interfaces/Balancer/IVault.sol",
+        "./interfaces/Gyroscope/IGyro2CLPPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "Gyro2CLPNebula"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/interfaces/Gyroscope/IGyro2CLPPool.sol": {
+      "lastModificationDate": 1695842243523,
+      "contentHash": "15c755063c238a7f19840f32de128c31",
+      "sourceName": "contracts/all-cygnus-oracles/interfaces/Gyroscope/IGyro2CLPPool.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "IGyro2CLPPool"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/BalancerMetaStableNebula.sol": {
+      "lastModificationDate": 1695833251002,
+      "contentHash": "06b05ee2e2b3c042bbe0e9c84d7321cc",
+      "sourceName": "contracts/all-cygnus-oracles/BalancerMetaStableNebula.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/ICygnusNebula.sol",
+        "./libraries/PRBMathUD60x18.sol",
+        "./libraries/SafeCastLib.sol",
+        "./interfaces/IERC20.sol",
+        "./interfaces/AggregatorV3Interface.sol",
+        "./interfaces/Balancer/IVault.sol",
+        "./interfaces/Balancer/IMetaStablePool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "BalancerMetaStableNebula"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/interfaces/Balancer/IMetaStablePool.sol": {
+      "lastModificationDate": 1695825759927,
+      "contentHash": "017dbf52841316a0426a258c46976106",
+      "sourceName": "contracts/all-cygnus-oracles/interfaces/Balancer/IMetaStablePool.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        "^0.8.17"
+      ],
+      "artifacts": [
+        "IMetaStablePool"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/node_modules/.pnpm/hardhat@2.16.1_ts-node@8.0.0_typescript@4.5.2/node_modules/hardhat/console.sol": {
+      "lastModificationDate": 1695843920599,
+      "contentHash": "e2884fb4e1ef4b4a7c7ac3a227880b0f",
+      "sourceName": "hardhat/console.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">= 0.4.22 <0.9.0"
+      ],
+      "artifacts": [
+        "console"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/GyroECLPNebula.sol": {
+      "lastModificationDate": 1695850494080,
+      "contentHash": "7153bc37126b27b7a6979e13b2c8b99c",
+      "sourceName": "contracts/all-cygnus-oracles/GyroECLPNebula.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/ICygnusNebula.sol",
+        "./libraries/PRBMathUD60x18.sol",
+        "./libraries/PRBMathSD59x18.sol",
+        "./libraries/SafeCastLib.sol",
+        "./interfaces/IERC20.sol",
+        "./interfaces/AggregatorV3Interface.sol",
+        "./interfaces/Balancer/IVault.sol",
+        "./interfaces/Gyroscope/IGyroECLPPool.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "GyroECLPNebula"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/interfaces/Gyroscope/IGyroECLPPool.sol": {
+      "lastModificationDate": 1695845514279,
+      "contentHash": "861cf1c85297a4a67fab8c0b490879a9",
+      "sourceName": "contracts/all-cygnus-oracles/interfaces/Gyroscope/IGyroECLPPool.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "IGyroECLPPool"
       ]
     }
   }
