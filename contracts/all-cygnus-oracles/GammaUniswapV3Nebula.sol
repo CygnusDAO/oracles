@@ -93,7 +93,7 @@ contract CygnusNebula is ICygnusNebula {
     /**
      *  @inheritdoc ICygnusNebula
      */
-    string public override name = "Cygnus: Hypervisor Nebula";
+    string public override name = "Cygnus: Hypervisor UniswapV3 Nebula";
 
     /**
      *  @inheritdoc ICygnusNebula
