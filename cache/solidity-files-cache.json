@@ -651,68 +651,6 @@
         "IUniswapV2Pair"
       ]
     },
-    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/GammaNebula.sol": {
-      "lastModificationDate": 1695825759927,
-      "contentHash": "a9b0f1ac72b30549790b17a069f8f4f9",
-      "sourceName": "contracts/all-cygnus-oracles/GammaNebula.sol",
-      "solcConfig": {
-        "version": "0.8.17",
-        "settings": {
-          "viaIR": true,
-          "optimizer": {
-            "enabled": true,
-            "runs": 1000000,
-            "details": {
-              "peephole": true,
-              "inliner": true,
-              "jumpdestRemover": true,
-              "orderLiterals": true,
-              "deduplicate": true,
-              "cse": true,
-              "constantOptimizer": true,
-              "yulDetails": {
-                "stackAllocation": true,
-                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
-              }
-            }
-          },
-          "metadata": {
-            "bytecodeHash": "none"
-          },
-          "outputSelection": {
-            "*": {
-              "*": [
-                "abi",
-                "evm.bytecode",
-                "evm.deployedBytecode",
-                "evm.methodIdentifiers",
-                "metadata"
-              ],
-              "": [
-                "ast"
-              ]
-            }
-          }
-        }
-      },
-      "imports": [
-        "./interfaces/ICygnusNebula.sol",
-        "./libraries/Gamma/TickMath.sol",
-        "./libraries/Gamma/LiquidityAmounts.sol",
-        "./libraries/PRBMathUD60x18.sol",
-        "./libraries/SafeCastLib.sol",
-        "./interfaces/IERC20.sol",
-        "./interfaces/Gamma/IHypervisor.sol",
-        "./interfaces/Gamma/IAlgebraPoolState.sol",
-        "./interfaces/AggregatorV3Interface.sol"
-      ],
-      "versionPragmas": [
-        ">=0.8.17"
-      ],
-      "artifacts": [
-        "GammaNebula"
-      ]
-    },
     "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/libraries/Gamma/TickMath.sol": {
       "lastModificationDate": 1694536543772,
       "contentHash": "c2d7a477d879f69f8f736517ee203329",
@@ -1694,6 +1632,182 @@
       ],
       "artifacts": [
         "IGyroECLPPool"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/GammaUniswapV3Nebula.sol": {
+      "lastModificationDate": 1695916416424,
+      "contentHash": "cb9bba660775194e27b92f724c9c0a24",
+      "sourceName": "contracts/all-cygnus-oracles/GammaUniswapV3Nebula.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/ICygnusNebula.sol",
+        "./libraries/Gamma/TickMath.sol",
+        "./libraries/Gamma/LiquidityAmounts.sol",
+        "./libraries/PRBMathUD60x18.sol",
+        "./libraries/SafeCastLib.sol",
+        "./interfaces/IERC20.sol",
+        "./interfaces/Gamma/IHypervisor.sol",
+        "./interfaces/Gamma/IUniswapV3Pool.sol",
+        "./interfaces/AggregatorV3Interface.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "CygnusNebula"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/interfaces/Gamma/IUniswapV3Pool.sol": {
+      "lastModificationDate": 1695916364508,
+      "contentHash": "5230789a2561193ce83cee27f9d6f0da",
+      "sourceName": "contracts/all-cygnus-oracles/interfaces/Gamma/IUniswapV3Pool.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "IUniswapV3Pool"
+      ]
+    },
+    "/home/sorrowlol/cygnus-oracles/contracts/all-cygnus-oracles/GammaAlgebraNebula.sol": {
+      "lastModificationDate": 1695916443037,
+      "contentHash": "e5e6536cd73060e4e18d629d011ebb23",
+      "sourceName": "contracts/all-cygnus-oracles/GammaAlgebraNebula.sol",
+      "solcConfig": {
+        "version": "0.8.17",
+        "settings": {
+          "viaIR": true,
+          "optimizer": {
+            "enabled": true,
+            "runs": 1000000,
+            "details": {
+              "peephole": true,
+              "inliner": true,
+              "jumpdestRemover": true,
+              "orderLiterals": true,
+              "deduplicate": true,
+              "cse": true,
+              "constantOptimizer": true,
+              "yulDetails": {
+                "stackAllocation": true,
+                "optimizerSteps": "dhfoDgvulfnTUtnIf[xa[r]EscLMcCTUtTOntnfDIulLculVcul[j]Tpeulxa[rul]xa[r]cLgvifCTUca[r]LSsTOtfDnca[r]Iulc]jmul[jul]VcTOculjmul"
+              }
+            }
+          },
+          "metadata": {
+            "bytecodeHash": "none"
+          },
+          "outputSelection": {
+            "*": {
+              "*": [
+                "abi",
+                "evm.bytecode",
+                "evm.deployedBytecode",
+                "evm.methodIdentifiers",
+                "metadata"
+              ],
+              "": [
+                "ast"
+              ]
+            }
+          }
+        }
+      },
+      "imports": [
+        "./interfaces/ICygnusNebula.sol",
+        "./libraries/Gamma/TickMath.sol",
+        "./libraries/Gamma/LiquidityAmounts.sol",
+        "./libraries/PRBMathUD60x18.sol",
+        "./libraries/SafeCastLib.sol",
+        "./interfaces/IERC20.sol",
+        "./interfaces/Gamma/IHypervisor.sol",
+        "./interfaces/Gamma/IAlgebraPoolState.sol",
+        "./interfaces/AggregatorV3Interface.sol"
+      ],
+      "versionPragmas": [
+        ">=0.8.17"
+      ],
+      "artifacts": [
+        "GammaAlgebraNebula"
       ]
     }
   }

@@ -1,0 +1,50 @@
+{
+  "_format": "hh-sol-artifact-1",
+  "contractName": "IUniswapV3Pool",
+  "sourceName": "contracts/all-cygnus-oracles/interfaces/Gamma/IUniswapV3Pool.sol",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes32",
+          "name": "key",
+          "type": "bytes32"
+        }
+      ],
+      "name": "positions",
+      "outputs": [
+        {
+          "internalType": "uint128",
+          "name": "liquidityAmount",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint256",
+          "name": "innerFeeGrowth0Token",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint256",
+          "name": "innerFeeGrowth1Token",
+          "type": "uint256"
+        },
+        {
+          "internalType": "uint128",
+          "name": "fees0",
+          "type": "uint128"
+        },
+        {
+          "internalType": "uint128",
+          "name": "fees1",
+          "type": "uint128"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "bytecode": "0x",
+  "deployedBytecode": "0x",
+  "linkReferences": {},
+  "deployedLinkReferences": {}
+}
