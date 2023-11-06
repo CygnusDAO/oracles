@@ -10,4 +10,5 @@ interface IComposableStablePool {
   function getTokenRate(address token) external view returns (uint256);
   function getRate() external view returns (uint256);
   function getLastJoinExitData() external view returns (uint256, uint256);
+  function getBptIndex() external view returns (uint256);
 }

@@ -573,7 +573,7 @@ contract GammaAlgebraNebula is ICygnusNebula {
             prices[i] = assetPrice.div(denomPrice * 10 ** (18 - decimals));
 
             // Reserves
-            reservesUsd[i] = ((prices[i] * 10 ** (18 - decimals)) * reserves[i]) / (10 ** nebulaOracle.poolTokensDecimals[i]);
+            reservesUsd[i] = PRBMath.mulDiv(assetPrice, reserves[i], 10 ** nebulaOracle.poolTokensDecimals[i]);
         }
     }
 

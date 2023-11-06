@@ -61,7 +61,7 @@ import {IComposableStablePool} from "./interfaces/Balancer/IComposableStablePool
  *          getting the LP token price.
  *  @notice Implementation of fair BPT pricing for composable stable pools
  */
-contract BalancerComposableNebula is ICygnusNebula {
+contract CygnusNebula is ICygnusNebula {
     /*  ═══════════════════════════════════════════════════════════════════════════════════════════════════════ 
             1. LIBRARIES
         ═══════════════════════════════════════════════════════════════════════════════════════════════════════  */
@@ -243,7 +243,7 @@ contract BalancerComposableNebula is ICygnusNebula {
                     and(
                         // The arguments are evaluated from right to left
                         gt(returndatasize(), 0x1f), // At least 32 bytes returned
-                        staticcall(gas(), priceFeed, 0x1c, 0x4, 0x0, 0x40) // Only get `latestPrice`
+                        staticcall(gas(), priceFeed, 0x1c, 0x4, 0x0, 0x40)
                     )
                 ),
                 // Adjust to 18 decimals
@@ -405,7 +405,7 @@ contract BalancerComposableNebula is ICygnusNebula {
             prices[i] = assetPrice.div(denomPrice * 10 ** (18 - decimals));
 
             // Reserves
-            reservesUsd[i] = ((prices[i] * 10 ** (18 - decimals)) * reserves[i]) / (10 ** nebulaOracle.poolTokensDecimals[i]);
+            reservesUsd[i] = PRBMath.mulDiv(assetPrice, reserves[i], 10 ** nebulaOracle.poolTokensDecimals[i]);
         }
     }
 
@@ -466,23 +466,17 @@ contract BalancerComposableNebula is ICygnusNebula {
         // Get pool tokens
         (IERC20[] memory _poolTokens, , ) = IVault(VAULT).getPoolTokens(poolId);
 
-        // Need to do this since the poolTokens from the bpt includes the pre-minted BPT
-        uint256 tokenIndex = 0;
+        // Get BPT index from the pool
+        uint256 bptIndex = IComposableStablePool(lpTokenPair).getBptIndex();
 
-        // Loop through each token and exclude the pre-minted BPT
-        for (uint256 i = 0; i < _poolTokens.length; i++) {
-            // If the poolToken is different than the BPT
-            if (_poolTokens[i] != IERC20(lpTokenPair)) {
-                // Assign  the pool token to our array at the created index
-                poolTokens[tokenIndex] = _poolTokens[i];
-
-                // Increase created index
-                tokenIndex++;
-            }
-        }
-
-        // Loop through each one
+        // Loop through each aggregator (which is same as poolTokens.length - 1)
         for (uint256 i = 0; i < aggregators.length; i++) {
+            // Check i against BPT index and skip
+            uint256 index = i < bptIndex ? i : i + 1;
+
+            // Assign token
+            poolTokens[i] = _poolTokens[index];
+
             // Get the decimals for token `i`
             tokenDecimals[i] = poolTokens[i].decimals();
 
@@ -518,3 +512,4 @@ contract BalancerComposableNebula is ICygnusNebula {
         emit InitializeNebulaOracle(true, nebulaOracle.oracleId, lpTokenPair, poolTokens, tokenDecimals, aggregators, priceDecimals);
     }
 }
+
