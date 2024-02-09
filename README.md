@@ -10,5 +10,9 @@ Integrated oracle so far:
 
 - Balancer Composable Stable Pools
 - Balancer Weighted Pools
+- Balancer Metastable Pools
 - Gamma's Algebra Hypervisor 
 - Gamma's UniswapV3 Hypervisor
+- UniswapV2 style AMMs (Also work with ve(3,3) Solidly-style DEXes)
+- Gyroscore ECLP Pools
+- Gyroscope 2CLP Pools
