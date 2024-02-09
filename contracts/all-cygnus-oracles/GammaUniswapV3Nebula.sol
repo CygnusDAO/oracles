@@ -396,7 +396,6 @@ contract CygnusNebula is ICygnusNebula {
         // Get limit position
         (, uint256 limit0, uint256 limit1) = getLimitPositionInternal(lpTokenPair, sqrtPriceX96, uniswapV3Pool);
 
-        // Cannot realistically overflow
         // Total0 = base0 + limit0 + hypervisors balance of token0
         total0 = nebulaOracles[lpTokenPair].poolTokens[0].balanceOf(lpTokenPair) + base0 + limit0;
 
@@ -455,11 +454,9 @@ contract CygnusNebula is ICygnusNebula {
      */
     function denominationTokenPrice() external view override returns (uint256) {
         // Price of the denomination token in 18 decimals
-        uint256 denomPrice = getPriceInternal(denominationAggregator);
-
-        // Return in oracle decimals
-        return denomPrice / (10 ** (18 - decimals));
+        return getPriceInternal(denominationAggregator);
     }
+
 
     /**
      *  @inheritdoc ICygnusNebula

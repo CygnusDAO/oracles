@@ -277,7 +277,7 @@ contract GyroECLPNebula is ICygnusNebula {
         }
     }
 
-    /** 
+    /**
      *  @dev Calculate A^{-1}t. This is rotating and scaling the circle into the ellipse
      */
     function mulAinv(
@@ -288,7 +288,7 @@ contract GyroECLPNebula is ICygnusNebula {
         tp.y = -t.x.mul(params.lambda).mul(params.s) + t.y.mul(params.c);
     }
 
-    /** 
+    /**
      *  @dev Calculates eta in more efficient way if the square root is known and input as second arg
      */
     function eta(int256 pxc, int256 z) internal pure returns (IGyroECLPPool.Vector2 memory tpp) {
@@ -296,7 +296,7 @@ contract GyroECLPNebula is ICygnusNebula {
         tpp.y = int256(1e18).div(z);
     }
 
-    /** 
+    /**
      *  @dev Given price on a circle, gives the normalized corresponding point on the circle centered at the origin
      *       pxc = price of asset x in terms of asset y (measured on the circle)
      *  @notice The function does not depend on Params
@@ -306,9 +306,9 @@ contract GyroECLPNebula is ICygnusNebula {
         tpp = eta(pxc, z);
     }
 
-    /** 
+    /**
      *  @dev Calculate A t where A is given in Section 2.2
-     *  @notice This is reversing rotation and scaling of the ellipse (mapping back to circle) 
+     *  @notice This is reversing rotation and scaling of the ellipse (mapping back to circle)
      */
     function mulA(
         IGyroECLPPool.Params memory params,
@@ -318,16 +318,16 @@ contract GyroECLPNebula is ICygnusNebula {
         t.y = params.s.mul(tp.x) + params.c.mul(tp.y);
     }
 
-    /** 
+    /**
      *  @dev Given price px on the transformed ellipse, get the untransformed price pxc on the circle
-     *       px = price of asset x in terms of asset y 
+     *       px = price of asset x in terms of asset y
      */
     function zeta(IGyroECLPPool.Params memory params, int256 px) internal pure returns (int256 pxc) {
         IGyroECLPPool.Vector2 memory nd = mulA(params, IGyroECLPPool.Vector2(-int256(1e18), px));
         pxc = -nd.y.div(nd.x);
     }
 
-    /** 
+    /**
      *  @dev Given price px on the transformed ellipse, maps to the corresponding point on the untransformed normalized circle
      *  px = price of asset x in terms of asset y
      */
@@ -393,12 +393,8 @@ contract GyroECLPNebula is ICygnusNebula {
      */
     function denominationTokenPrice() external view override returns (uint256) {
         // Price of the denomination token in 18 decimals
-        uint256 denomPrice = getPriceInternal(denominationAggregator);
-
-        // Return in oracle decimals
-        return denomPrice / (10 ** (18 - decimals));
+        return getPriceInternal(denominationAggregator);
     }
-
 
     /**
      *  @inheritdoc ICygnusNebula

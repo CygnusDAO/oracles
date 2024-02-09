@@ -464,11 +464,9 @@ contract GammaAlgebraNebula is ICygnusNebula {
      */
     function denominationTokenPrice() external view override returns (uint256) {
         // Price of the denomination token in 18 decimals
-        uint256 denomPrice = getPriceInternal(denominationAggregator);
-
-        // Return in oracle decimals
-        return denomPrice / (10 ** (18 - decimals));
+        return getPriceInternal(denominationAggregator);
     }
+
 
     /**
      *  @inheritdoc ICygnusNebula
