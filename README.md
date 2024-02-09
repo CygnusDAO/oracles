@@ -10,4 +10,5 @@ Integrated oracle so far:
 
 - Balancer Composable Stable Pools
 - Balancer Weighted Pools
-- Gamma's Hypervisor
+- Gamma's Algebra Hypervisor 
+- Gamma's UniswapV3 Hypervisor
